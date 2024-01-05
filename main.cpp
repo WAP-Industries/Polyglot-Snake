@@ -33,7 +33,9 @@ Window = None
 
 def Init():
     root = tk.Tk()
-    root.wm_title("Snake"); root.iconbitmap('icon.ico')
+    root.wm_title("Snake")
+    root.iconbitmap('icon.ico')
+
     Window = tk.Canvas(root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
     Window.pack()
 
