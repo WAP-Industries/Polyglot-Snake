@@ -9,19 +9,32 @@
 
 #include <vector>
 
-
-#define return }
 #define print(s) std::cout<<s<<"\n"
+#define sleep(i) FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 1;SDL_Delay(FrameDelay-FrameTime);pass;
 #define randint std::rand()%(max-min+1)+min
 
+#define return }
 #define index (int i=0
 #define in ;
 #define range(l) i<l;i++){0?0
-#define continue }
+#define pass }
+#define while(i) while(i){0?0
+#define if(i) if(i){0?0
 
-#define chr int \
+#define id int
+
+id
 ScreenWidth = 600;
-chr;
+id
+ScreenTiles = 20;
+id
+ScreenScale = ScreenWidth/ScreenTiles;
+id 
+MaxApples = 5;
+id
+MaxFPS = 10;
+id
+FrameDelay = 1000/MaxFPS;
 
 
 #if 0
@@ -29,20 +42,19 @@ import sys; sys.dont_write_bytecode = True
 import tkinter as tk
 from random import randint
 
-Window = None
+Root = Window = None
 
 def Init():
-    root = tk.Tk()
-    root.wm_title("Snake")
-    root.iconbitmap('icon.ico')
+    global Root,Window
+    Root = tk.Tk()
+    Root.wm_title("Snake")
+    Root.iconbitmap('icon.ico')
 
-    Window = tk.Canvas(root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
+    Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
     Window.pack()
 
-    root.mainloop()
+    Root.mainloop()
 
-def GameLoop():
-    pass
 
 def main():
 #endif
@@ -51,6 +63,12 @@ def main():
 #endif
 SDL_Window* Window = nullptr;
 SDL_Renderer* Renderer = nullptr;
+
+SDL_Event event;
+bool Ended = false;
+
+Uint32 FrameStart;
+int FrameTime;
 
 void Init(){
     Window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
@@ -64,35 +82,42 @@ void Init(){
     SDL_Init(SDL_INIT_EVERYTHING);
 }
 
-void GameLoop(){
-    SDL_Event event;
-    bool Ended = false;
-    while (1){
-        if (Ended) break;
-
-        SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
-        SDL_RenderClear(Renderer);
-        SDL_RenderPresent(Renderer);
-
-        while (SDL_PollEvent(&event)){
-            if (event.type==SDL_QUIT){
-                SDL_DestroyRenderer(Renderer);
-                SDL_DestroyWindow(Window);
-                SDL_Quit();
-                Ended = true;
-                break;
-            }
-        }
-    }
-}
-
 main(int argc,char* argv[]){
     std::srand((unsigned) time(NULL));
 #if 0
 " """
 #endif
     Init();
-    GameLoop();
+
+    while (1):
+        1;
+        #if 0
+        if not Root.winfo_exists(): break;
+        #endif
+        #if 0
+        """ "
+        #endif
+        FrameStart = SDL_GetTicks();
+
+        if (Ended): 1;break;pass;
+        SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
+        SDL_RenderClear(Renderer);
+        SDL_RenderPresent(Renderer);
+
+        while (SDL_PollEvent(&event)):1;
+            if (event.type==SDL_QUIT):1;
+                SDL_DestroyRenderer(Renderer);
+                SDL_DestroyWindow(Window);
+                SDL_Quit();
+                Ended = true;
+                break;
+                pass
+            pass
+        #if 0
+        " """
+        #endif
+        sleep(10);
+        pass
     return
 
 #//\
