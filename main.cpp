@@ -42,6 +42,29 @@ FrameDelay = 1000/MaxFPS;
 chr
 GameTitle = "Polyglot Snake";
 
+#if 0
+def Move(event):
+    SDLK_w, SDLK_a, SDLK_s, SDLK_d = "w", "a", "s", "d"
+    Key = event.keysym
+#endif
+#if 0
+    """ "
+#endif
+struct {
+    int X, Y, Tail;
+    std::vector<std::vector<int>> Body;
+    int Velocity[2] = {0,0};
+} Snake;
+
+void Move(SDL_Keycode Key){
+#if 0
+" """
+#endif
+    if (Key==SDLK_w): 1; Snake.Velocity[0] = 0; Snake.Velocity[1] = -1; pass;
+    if (Key==SDLK_a): 1; Snake.Velocity[0] = -1; Snake.Velocity[1] = 0; pass;
+    if (Key==SDLK_s): 1; Snake.Velocity[0] = 0; Snake.Velocity[1] = 1; pass;
+    if (Key==SDLK_d): 1; Snake.Velocity[0] = 1; Snake.Velocity[1] = 0; pass;
+    pass
 
 #if 0
 import sys; sys.dont_write_bytecode = True
@@ -57,12 +80,13 @@ class Snake:
 
 
 def Init():
-    global Root,Window
-    if Window: return
+    global Root, Window
+
     Root = tk.Tk()
     Root.wm_title(GameTitle)
     Root.iconbitmap('icon.ico')
     Root.resizable(False, False)
+    Root.bind("<Key>", Move)
 
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
     Window.pack()
@@ -71,6 +95,7 @@ Renderer, SDL_RenderPresent = None, lambda x:0
 
 
 def main():
+    global Window
 #endif
 #if 0
     """ "
@@ -96,12 +121,6 @@ void DrawTile(std::string Color, int X, int Y){
     SDL_RenderFillRect(Renderer, &Tile);
 }
 
-struct {
-    int X, Y, Tail;
-    std::vector<std::vector<int>> Body;
-    int Velocity[2] = {0,0};
-} Snake;
-
 void Init(){
     Window = SDL_CreateWindow(GameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
     Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
@@ -119,16 +138,17 @@ main(int argc,char* argv[]){
 #if 0
 " """
 #endif
-    Init();
-    Snake.X = Snake.Y = ScreenTiles/2;
-    Snake.Tail = 5;
-    Snake.Velocity[0] = Snake.Velocity[1] = 0;
+    #//\
+    if not Window:
+        Init();
+        Snake.X = Snake.Y = ScreenTiles/2;
+        Snake.Tail = 5;
+        Snake.Velocity[0] = Snake.Velocity[1] = 0;
 
+    #//\
+    if not Root.winfo_exists(): return;
     while (1):
         0;
-        #if 0
-        if not Root.winfo_exists(): break;
-        #endif
         #if 0
         """ "
         #endif
@@ -143,6 +163,9 @@ main(int argc,char* argv[]){
                 Ended = true;
                 break;
                 pass
+            if (event.type==SDL_KEYDOWN):0;
+                Move(event.key.keysym.sym);
+                pass
             pass
 
         SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
@@ -150,30 +173,29 @@ main(int argc,char* argv[]){
         #if 0
         " """
         #endif
-        
         Snake.X+=Snake.Velocity[0];
         Snake.Y+=Snake.Velocity[1];
 
-        if (Snake.X<0): 1; Snake.X = ScreenTiles-1; pass;
-        if (Snake.Y<0): 1; Snake.Y = ScreenTiles-1; pass;
-        if (Snake.X>=ScreenTiles): 1; Snake.X = 0; pass;
-        if (Snake.Y>=ScreenTiles): 1; Snake.Y = 0; pass;
+        if (Snake.X<0): 0; Snake.X = ScreenTiles-1; pass;
+        if (Snake.Y<0): 0; Snake.Y = ScreenTiles-1; pass;
+        if (Snake.X>=ScreenTiles): 0; Snake.X = 0; pass;
+        if (Snake.Y>=ScreenTiles): 0; Snake.Y = 0; pass;
 
         #if 0
-        X,Y = list(map(lambda x:x*ScreenScale, [Snake.X, Snake.Y])) 
-        Snake.Body.append(Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=f"#{124:02X}{252:02X}{0:02X}"));
+        X,Y = list(map(lambda x:x*ScreenScale, [Snake.X, Snake.Y]))
+        Snake.Body.append(Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=f"#{124:02X}{252:02X}{0:02X}",outline=""));
         #endif
         #if 0
         """ "
         #endif
         for (auto i: Snake.Body)
-            DrawTile("green", i[0],i[0]);
+            DrawTile("green", i[0],i[1]);
         Snake.Body.push_back({Snake.X, Snake.Y});
         #if 0
         " """
         #endif
         while (len(Snake.Body)>Snake.Tail): 
-            1;
+            0;
             #if 0
             Window.delete(Snake.Body[0]);
             try:
@@ -187,11 +209,11 @@ main(int argc,char* argv[]){
 
         SDL_RenderPresent(Renderer);
         ord;
+        pass
         #//\
         break;
-        pass
     #//\
-    Root.after(MaxFPS,main)
+    Root.after(int(FrameDelay),main);
     pass
 
 #//\
