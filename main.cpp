@@ -107,6 +107,7 @@ pass
 
 #if 0
 import sys; sys.dont_write_bytecode = True
+import win32gui, win32con; win32gui.ShowWindow(win32gui.GetForegroundWindow(), win32con.SW_HIDE)
 import tkinter as tk
 from random import randint
 
