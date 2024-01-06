@@ -10,7 +10,7 @@
 #include <vector>
 
 #define print(s) std::cout<<s<<"\n"
-#define sleep(i) FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 1;SDL_Delay(FrameDelay-FrameTime);pass;
+#define sleep(i) FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 0;SDL_Delay(FrameDelay-FrameTime);pass;
 #define randint std::rand()%(max-min+1)+min
 
 #define return }
@@ -44,6 +44,10 @@ from random import randint
 
 Root = Window = None
 
+class Snake:
+    x = y = tail = 0
+    body = velocity = []
+
 def Init():
     global Root,Window
     Root = tk.Tk()
@@ -70,6 +74,12 @@ bool Ended = false;
 Uint32 FrameStart;
 int FrameTime;
 
+struct {
+    int x, y, tail;
+    std::vector<std::vector<int>> body;
+    int velocity[2];
+} Snake;
+
 void Init(){
     Window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
     Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
@@ -90,7 +100,7 @@ main(int argc,char* argv[]){
     Init();
 
     while (1):
-        1;
+        0;
         #if 0
         if not Root.winfo_exists(): break;
         #endif
@@ -99,13 +109,13 @@ main(int argc,char* argv[]){
         #endif
         FrameStart = SDL_GetTicks();
 
-        if (Ended): 1;break;pass;
+        if (Ended): 0;break;pass;
         SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
         SDL_RenderClear(Renderer);
         SDL_RenderPresent(Renderer);
 
-        while (SDL_PollEvent(&event)):1;
-            if (event.type==SDL_QUIT):1;
+        while (SDL_PollEvent(&event)):0;
+            if (event.type==SDL_QUIT):0;
                 SDL_DestroyRenderer(Renderer);
                 SDL_DestroyWindow(Window);
                 SDL_Quit();
