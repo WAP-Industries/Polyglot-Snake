@@ -8,12 +8,15 @@
 #include <cstdlib>
 
 #include <vector>
+#include <tuple>
 
 #define print(s) std::cout<<s<<"\n"
-#define randint std::rand()%(max-min+1)+min
+#define randint(min, max) std::rand()%(max-min+1)+min
 #define len(l) l.size()
 #define pop(i) erase(i)
-#define ord FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 0;SDL_Delay(FrameDelay-FrameTime);pass;
+#define ord SDL_RenderPresent(Renderer); FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 0;SDL_Delay(FrameDelay-FrameTime);pass;
+#define append push_back
+#define list(i) i
 
 #define index (int i=0
 #define in ;
@@ -25,6 +28,10 @@
 #define id int
 #define any auto
 #define chr char*
+#define dict std::tuple<int, int, int>
+#define set std::vector<std::vector<int>>
+#define map std::vector<int>
+#define maketuple std::tuple
 
 id
 ScreenWidth = 600;
@@ -42,6 +49,16 @@ FrameDelay = 1000/MaxFPS;
 chr
 GameTitle = "Polyglot Snake";
 
+#//\
+maketuple = lambda *args: tuple(i for i in args)
+dict
+Green = maketuple(124, 252, 0);
+dict
+Red = maketuple(255, 0, 0);
+
+set
+Apples=list({});
+
 #if 0
 def Move(event):
     SDLK_w, SDLK_a, SDLK_s, SDLK_d = "w", "a", "s", "d"
@@ -52,7 +69,7 @@ def Move(event):
 #endif
 struct {
     int X, Y, Tail;
-    std::vector<std::vector<int>> Body;
+    set Body;
     int Velocity[2] = {0,0};
 } Snake;
 
@@ -60,11 +77,33 @@ void Move(SDL_Keycode Key){
 #if 0
 " """
 #endif
-    if (Key==SDLK_w): 1; Snake.Velocity[0] = 0; Snake.Velocity[1] = -1; pass;
-    if (Key==SDLK_a): 1; Snake.Velocity[0] = -1; Snake.Velocity[1] = 0; pass;
-    if (Key==SDLK_s): 1; Snake.Velocity[0] = 0; Snake.Velocity[1] = 1; pass;
-    if (Key==SDLK_d): 1; Snake.Velocity[0] = 1; Snake.Velocity[1] = 0; pass;
+    if (Key==SDLK_w): 0; Snake.Velocity[0] = 0; Snake.Velocity[1] = -1; pass;
+    if (Key==SDLK_a): 0; Snake.Velocity[0] = -1; Snake.Velocity[1] = 0; pass;
+    if (Key==SDLK_s): 0; Snake.Velocity[0] = 0; Snake.Velocity[1] = 1; pass;
+    if (Key==SDLK_d): 0; Snake.Velocity[0] = 1; Snake.Velocity[1] = 0; pass;
     pass
+
+#if 0
+def SpawnApple():
+    def GetPos():
+#endif
+#if 0
+        """ "
+#endif
+void SpawnApple(){
+    auto GetPos = []()->int {
+#if 0
+" """
+#endif
+        return randint(0, ScreenTiles-1);
+        pass;
+    map 
+    pos = {GetPos(), GetPos()};
+    #//\
+    pos = CreateTile(*map(lambda x:x*ScreenScale, [GetPos(), GetPos()]), Red);
+    Apples.append(pos);
+pass
+
 
 #if 0
 import sys; sys.dont_write_bytecode = True
@@ -78,6 +117,7 @@ class Snake:
     Body = []
     Velocity = [0,0]
 
+GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
 
 def Init():
     global Root, Window
@@ -91,11 +131,10 @@ def Init():
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
     Window.pack()
 
-Renderer, SDL_RenderPresent = None, lambda x:0
-
+CreateTile = lambda X,Y, Color: Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=GetHex(Color),outline="")
 
 def main():
-    global Window
+    global Window, Apples
 #endif
 #if 0
     """ "
@@ -109,13 +148,13 @@ bool Ended = false;
 Uint32 FrameStart;
 int FrameTime;
 
-void SetColor(std::string color){
+void SetColor(std::tuple<int, int, int> Color){
     int r, g, b;
-    std::tie(r, g, b) = std::tuple(124, 252, 0);
+    std::tie(r, g, b) = Color;
     SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
 }
 
-void DrawTile(std::string Color, int X, int Y){
+void DrawTile(std::tuple<int, int, int> Color, int X, int Y){
     SetColor(Color);
     SDL_Rect Tile = {X*ScreenScale, Y*ScreenScale, ScreenScale, ScreenScale};
     SDL_RenderFillRect(Renderer, &Tile);
@@ -144,6 +183,12 @@ main(int argc,char* argv[]){
         Snake.X = Snake.Y = ScreenTiles/2;
         Snake.Tail = 5;
         Snake.Velocity[0] = Snake.Velocity[1] = 0;
+        #//\
+        Apples = []
+        for index in range(MaxApples):
+            0;
+            SpawnApple();
+            pass
 
     #//\
     if not Root.winfo_exists(): return;
@@ -181,15 +226,46 @@ main(int argc,char* argv[]){
         if (Snake.X>=ScreenTiles): 0; Snake.X = 0; pass;
         if (Snake.Y>=ScreenTiles): 0; Snake.Y = 0; pass;
 
+        for index in range(len(Apples)):
+            0;
+            #//\
+            i = index
+            #if 0
+            X, Y = map(lambda x:x/ScreenScale, Window.coords(Apples[i])[:2])
+            #endif
+            #if 0
+            """ "
+            #endif
+            auto X = Apples[i][0], Y = Apples[i][1];
+            #if 0
+            " """
+            #endif
+            if (X==Snake.X and Y==Snake.Y):
+                0;
+                any
+                #if 0
+                try:
+                #endif
+                    a = Apples.begin()+i;
+                #//\
+                except: a = i;
+                #//\
+                Window.delete(Apples[a]);
+                Apples.pop(a);
+                Snake.Tail+=1;
+                SpawnApple();
+                pass
+            pass
+
         #if 0
-        X,Y = list(map(lambda x:x*ScreenScale, [Snake.X, Snake.Y]))
-        Snake.Body.append(Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=f"#{124:02X}{252:02X}{0:02X}",outline=""));
+        Snake.Body.append(CreateTile(*map(lambda x:x*ScreenScale, [Snake.X, Snake.Y]), Green));
         #endif
         #if 0
         """ "
         #endif
+        for (auto i:Apples) DrawTile(Red, i[0], i[1]);
         for (auto i: Snake.Body)
-            DrawTile("green", i[0],i[1]);
+            DrawTile(Green, i[0],i[1]);
         Snake.Body.push_back({Snake.X, Snake.Y});
         #if 0
         " """
@@ -207,8 +283,7 @@ main(int argc,char* argv[]){
             Snake.Body.pop(i);
             pass
 
-        SDL_RenderPresent(Renderer);
-        ord;
+        ord
         pass
         #//\
         break;
