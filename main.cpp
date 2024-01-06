@@ -10,10 +10,11 @@
 #include <vector>
 
 #define print(s) std::cout<<s<<"\n"
-#define sleep(i) FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 0;SDL_Delay(FrameDelay-FrameTime);pass;
 #define randint std::rand()%(max-min+1)+min
+#define len(l) l.size()
+#define pop(i) erase(i)
+#define ord FrameTime = SDL_GetTicks()-FrameStart; if (FrameDelay>FrameTime): 0;SDL_Delay(FrameDelay-FrameTime);pass;
 
-#define return }
 #define index (int i=0
 #define in ;
 #define range(l) i<l;i++){0?0
@@ -22,6 +23,8 @@
 #define if(i) if(i){0?0
 
 #define id int
+#define any auto
+#define chr char*
 
 id
 ScreenWidth = 600;
@@ -36,6 +39,9 @@ MaxFPS = 10;
 id
 FrameDelay = 1000/MaxFPS;
 
+chr
+GameTitle = "Polyglot Snake";
+
 
 #if 0
 import sys; sys.dont_write_bytecode = True
@@ -45,19 +51,23 @@ from random import randint
 Root = Window = None
 
 class Snake:
-    x = y = tail = 0
-    body = velocity = []
+    X = Y = Tail = 0
+    Body = []
+    Velocity = [0,0]
+
 
 def Init():
     global Root,Window
+    if Window: return
     Root = tk.Tk()
-    Root.wm_title("Snake")
+    Root.wm_title(GameTitle)
     Root.iconbitmap('icon.ico')
+    Root.resizable(False, False)
 
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
     Window.pack()
 
-    Root.mainloop()
+Renderer, SDL_RenderPresent = None, lambda x:0
 
 
 def main():
@@ -74,14 +84,26 @@ bool Ended = false;
 Uint32 FrameStart;
 int FrameTime;
 
+void SetColor(std::string color){
+    int r, g, b;
+    std::tie(r, g, b) = std::tuple(124, 252, 0);
+    SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
+}
+
+void DrawTile(std::string Color, int X, int Y){
+    SetColor(Color);
+    SDL_Rect Tile = {X*ScreenScale, Y*ScreenScale, ScreenScale, ScreenScale};
+    SDL_RenderFillRect(Renderer, &Tile);
+}
+
 struct {
-    int x, y, tail;
-    std::vector<std::vector<int>> body;
-    int velocity[2];
+    int X, Y, Tail;
+    std::vector<std::vector<int>> Body;
+    int Velocity[2] = {0,0};
 } Snake;
 
 void Init(){
-    Window = SDL_CreateWindow("Snake", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
+    Window = SDL_CreateWindow(GameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
     Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
     
     SDL_Surface* Icon = IMG_Load("icon.ico");
@@ -98,6 +120,9 @@ main(int argc,char* argv[]){
 " """
 #endif
     Init();
+    Snake.X = Snake.Y = ScreenTiles/2;
+    Snake.Tail = 5;
+    Snake.Velocity[0] = Snake.Velocity[1] = 0;
 
     while (1):
         0;
@@ -107,12 +132,8 @@ main(int argc,char* argv[]){
         #if 0
         """ "
         #endif
-        FrameStart = SDL_GetTicks();
-
         if (Ended): 0;break;pass;
-        SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
-        SDL_RenderClear(Renderer);
-        SDL_RenderPresent(Renderer);
+        FrameStart = SDL_GetTicks();
 
         while (SDL_PollEvent(&event)):0;
             if (event.type==SDL_QUIT):0;
@@ -123,12 +144,55 @@ main(int argc,char* argv[]){
                 break;
                 pass
             pass
+
+        SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
+        SDL_RenderClear(Renderer);
         #if 0
         " """
         #endif
-        sleep(10);
+        
+        Snake.X+=Snake.Velocity[0];
+        Snake.Y+=Snake.Velocity[1];
+
+        if (Snake.X<0): 1; Snake.X = ScreenTiles-1; pass;
+        if (Snake.Y<0): 1; Snake.Y = ScreenTiles-1; pass;
+        if (Snake.X>=ScreenTiles): 1; Snake.X = 0; pass;
+        if (Snake.Y>=ScreenTiles): 1; Snake.Y = 0; pass;
+
+        #if 0
+        X,Y = list(map(lambda x:x*ScreenScale, [Snake.X, Snake.Y])) 
+        Snake.Body.append(Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=f"#{124:02X}{252:02X}{0:02X}"));
+        #endif
+        #if 0
+        """ "
+        #endif
+        for (auto i: Snake.Body)
+            DrawTile("green", i[0],i[0]);
+        Snake.Body.push_back({Snake.X, Snake.Y});
+        #if 0
+        " """
+        #endif
+        while (len(Snake.Body)>Snake.Tail): 
+            1;
+            #if 0
+            Window.delete(Snake.Body[0]);
+            try:
+            #endif
+                any
+                i = Snake.Body.begin();
+            #//\
+            except: i = 0
+            Snake.Body.pop(i);
+            pass
+
+        SDL_RenderPresent(Renderer);
+        ord;
+        #//\
+        break;
         pass
-    return
+    #//\
+    Root.after(MaxFPS,main)
+    pass
 
 #//\
-main()
+main(); Root.mainloop()
