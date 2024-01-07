@@ -258,7 +258,8 @@ main(int argc,char* argv[]){
         #if 0
         """ "
         #endif
-        for (auto i:Apples) DrawTile(Red, i[0], i[1]);
+        for (auto i:Apples) 
+            DrawTile(Red, i[0], i[1]);
         for (auto i: Snake.Body)
             DrawTile(Green, i[0],i[1]);
         Snake.Body.push_back({Snake.X, Snake.Y});
