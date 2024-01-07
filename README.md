@@ -11,8 +11,8 @@ Rules:
    - You can't do shit like in [`gay/version-1.cpp`](https://github.com/WAP-Industries/Polyglot-Snake/blob/main/gay/version-1.cpp), where Python is relying on existing g++ capabilities to compile the C++ code
    - Essentially, each language must run its own version of Snake
 2.  Your code must look like one full program
-   - You cannot have two separate full source codes for each language
-   - A solution like in [`gay/version-2.cpp`](https://github.com/WAP-Industries/Polyglot-Snake/blob/main/gay/version-2.cpp) would be too easy otherwise
+    - You cannot have two separate full source codes for each language
+    - A solution like in [`gay/version-2.cpp`](https://github.com/WAP-Industries/Polyglot-Snake/blob/main/gay/version-2.cpp) would be too easy otherwise
 
 ---
 
