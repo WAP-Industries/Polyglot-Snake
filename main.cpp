@@ -182,8 +182,6 @@ main(int argc,char* argv[]){
         Snake.X = Snake.Y = ScreenTiles/2;
         Snake.Tail = 5;
         Snake.Velocity[0] = Snake.Velocity[1] = 0;
-        #//\
-        Apples = []
         for index in range(MaxApples):
             0;
             SpawnApple();
