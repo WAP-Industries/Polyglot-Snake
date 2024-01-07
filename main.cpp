@@ -6,7 +6,6 @@
 #include <windows.h>
 #include <ctime>
 #include <cstdlib>
-
 #include <vector>
 #include <tuple>
 
