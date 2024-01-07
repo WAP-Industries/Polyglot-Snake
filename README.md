@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="demo.jpg" width=300 height=300 />
+</p>
+
 ## The Challenge
 Code Snake, but the source code runs in both Python and C++.  
   
