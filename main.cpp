@@ -28,9 +28,9 @@
 #define id int
 #define any auto
 #define chr char*
-#define dict std::tuple<int, int, int>
+#define map std::tuple<int, int, int>
 #define set std::vector<std::vector<int>>
-#define map std::vector<int>
+#define dict std::vector<int>
 #define maketuple std::tuple
 
 id
@@ -51,9 +51,9 @@ GameTitle = "Polyglot Snake";
 
 #//\
 maketuple = lambda *args: tuple(i for i in args)
-dict
+map
 Green = maketuple(124, 252, 0);
-dict
+map
 Red = maketuple(255, 0, 0);
 
 set
@@ -97,7 +97,7 @@ void SpawnApple(){
 #endif
         return randint(0, ScreenTiles-1);
         pass;
-    map 
+    dict 
     pos = {GetPos(), GetPos()};
     #//\
     pos = CreateTile(*map(lambda x:x*ScreenScale, [GetPos(), GetPos()]), Red);
@@ -118,8 +118,6 @@ class Snake:
     Body = []
     Velocity = [0,0]
 
-GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
-
 def Init():
     global Root, Window
 
@@ -132,6 +130,7 @@ def Init():
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
     Window.pack()
 
+GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
 CreateTile = lambda X,Y, Color: Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=GetHex(Color),outline="")
 
 def main():
@@ -244,23 +243,21 @@ main(int argc,char* argv[]){
             if (X==Snake.X and Y==Snake.Y):
                 0;
                 any
-                #if 0
+                #//\
                 try:
-                #endif
                     a = Apples.begin()+i;
-                #//\
+                #if 0
                 except: a = i;
-                #//\
                 Window.delete(Apples[a]);
+                #endif
                 Apples.pop(a);
                 Snake.Tail+=1;
                 SpawnApple();
                 pass
             pass
 
-        #if 0
+        #//\
         Snake.Body.append(CreateTile(*map(lambda x:x*ScreenScale, [Snake.X, Snake.Y]), Green));
-        #endif
         #if 0
         """ "
         #endif
