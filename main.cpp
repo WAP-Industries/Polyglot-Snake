@@ -124,7 +124,7 @@ def Init():
     Root = tk.Tk()
     Root.wm_title(GameTitle)
     Root.iconbitmap('icon.ico')
-    Root.resizable(False, False)
+    Root.resizable(0,0)
     Root.bind("<Key>", Move)
 
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg=GetHex(Black),borderwidth=0, highlightthickness=0)
