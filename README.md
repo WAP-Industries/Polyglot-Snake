@@ -1,6 +1,6 @@
 ## The Challenge
 Code Snake game, but the source code runs in both Python and C++.  
-The languages must be independent of each other, meaning bullshit like in `` is unacceptable.
+The languages must be independent of each other, meaning 
 
 ## Compilation
 - C++
