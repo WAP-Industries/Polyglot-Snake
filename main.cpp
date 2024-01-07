@@ -100,7 +100,7 @@ void SpawnApple(){
     dict 
     pos = {GetPos(), GetPos()};
     #//\
-    pos = CreateTile(*map(lambda x:x*ScreenScale, pos), Red);
+    pos = CreateTile(*map(lambda x:x*ScreenScale, [*pos,*pos][:2]), Red);
     Apples.append(pos);
 pass
 
@@ -149,13 +149,13 @@ bool Ended = false;
 Uint32 FrameStart;
 int FrameTime;
 
-void SetColor(std::tuple<int, int, int> Color){
+void SetColor(map Color){
     int r, g, b;
     std::tie(r, g, b) = Color;
     SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
 }
 
-void DrawTile(std::tuple<int, int, int> Color, int X, int Y){
+void DrawTile(map Color, int X, int Y){
     SetColor(Color);
     SDL_Rect Tile = {X*ScreenScale, Y*ScreenScale, ScreenScale, ScreenScale};
     SDL_RenderFillRect(Renderer, &Tile);
