@@ -7,7 +7,7 @@ The languages must be independent of each other, meaning you can't do shit like 
 
 ## Compilation
 - C++
-    - Run `main.exe`
+    - Run `main.exe` or
     - Run `& .\compile.ps1` in your powershell terminal
 - Python
     - Run `python main.cpp` in your terminal 
