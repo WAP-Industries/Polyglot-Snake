@@ -129,7 +129,7 @@ def Init():
 
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg=GetHex(Black),borderwidth=0, highlightthickness=0)
     Window.pack()
-#//\
+
 GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
 
 CreateTile = lambda X,Y, Color: Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=GetHex(Color),outline="")
