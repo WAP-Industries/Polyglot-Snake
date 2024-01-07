@@ -53,6 +53,8 @@ map
 Green = maketuple(124, 252, 0);
 map
 Red = maketuple(255, 0, 0);
+map
+Black = maketuple(0,0,0);
 
 set
 Apples=list({});
@@ -125,7 +127,7 @@ def Init():
     Root.resizable(False, False)
     Root.bind("<Key>", Move)
 
-    Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg="black",borderwidth=0, highlightthickness=0)
+    Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg=GetHex(Black),borderwidth=0, highlightthickness=0)
     Window.pack()
 
 GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
@@ -208,7 +210,7 @@ main(int argc,char* argv[]){
                 pass
             pass
 
-        SDL_SetRenderDrawColor(Renderer, 0,0,0,255);
+        SetColor(Black);
         SDL_RenderClear(Renderer);
         #if 0
         " """
