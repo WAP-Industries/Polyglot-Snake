@@ -11,8 +11,7 @@ Rules:
    - Essentially, each language must run its own version of Snake
 2. You cannot have two separate full source codes for each language
    - A solution like in [`gay/version-2.cpp`](https://github.com/WAP-Industries/Polyglot-Snake/blob/main/gay/version-2.cpp) would be too easy otherwise
-   - You code must look like one full program
-   - https://codegolf.stackexchange.com/questions/15372/write-a-program-in-disguise
+   - You code must look like one full program, similar to [this](https://codegolf.stackexchange.com/questions/15372/write-a-program-in-disguise)
 
 ---
 
