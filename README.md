@@ -9,8 +9,10 @@ The languages must be independent of each other, meaning you can't do shit like 
 
 Essentially, each language must run its own version of Snake.
 
+---
+
 ## Implementation
-For graphics, I used Tkinter for Python and SDL2 for C++.  
+For graphics, I used SDL2 for C++ and Tkinter for Python.    
 As an additional challenge I tried my best to golf this, which meant combining C++ and Python code using sketchy macros.
 
 ---
