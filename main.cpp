@@ -70,7 +70,7 @@ def Move(event):
 struct {
     int X, Y, Tail;
     set Body;
-    int Velocity[2] = {0,0};
+    int Velocity[2];
 } Snake;
 
 void Move(SDL_Keycode Key){
