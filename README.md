@@ -4,7 +4,7 @@
 
 ## The Challenge
 This is an extension of the [disguised program challenge](https://codegolf.stackexchange.com/questions/15372/write-a-program-in-disguise) on Code Golf.  
-Code Snake, but the source code must be a polyglot (valid in 2 or more languages).  
+The source code must look like another language, and must run Snake in both languages.      
 
 Rules:
 1. The languages must be independent of each other
@@ -17,7 +17,7 @@ Rules:
 ---
 
 ## Implementation
-For this challenge, I chose Python and C++ for my polyglot.  
+For this challenge, I chose Python and C++.    
 For graphics, I used Tkinter for Python and SDL2 for C++.  
 
 ---
