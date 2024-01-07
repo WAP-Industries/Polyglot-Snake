@@ -98,7 +98,7 @@ void SpawnApple(){
     dict 
     pos = {GetPos(), GetPos()};
     #//\
-    pos = CreateTile(*map(lambda x:x*ScreenScale, [GetPos(), GetPos()]), Red);
+    pos = CreateTile(*map(lambda x:x*ScreenScale, pos), Red);
     Apples.append(pos);
 pass
 
@@ -129,6 +129,7 @@ def Init():
     Window.pack()
 
 GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
+
 CreateTile = lambda X,Y, Color: Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=GetHex(Color),outline="")
 
 def main():
@@ -185,9 +186,7 @@ main(int argc,char* argv[]){
             0;
             SpawnApple();
             pass
-
-    #//\
-    if not Root.winfo_exists(): return;
+            
     while (1):
         0;
         #if 0
