@@ -9,7 +9,6 @@
 #include <vector>
 #include <tuple>
 
-#define print(s) std::cout<<s<<"\n"
 #define randint(min, max) std::rand()%(max-min+1)+min
 #define len(l) l.size()
 #define pop(i) erase(i)
