@@ -14,7 +14,9 @@ Essentially, each language must run its own version of Snake.
 ## Implementation
 For graphics, I used SDL2 for C++ and Tkinter for Python.  
   
-As an additional challenge, I refrained from simply combining two separate source codes for each language into one file. Instead, I tried my best to golf this, which meant combining C++ and Python code using a lot of sketchy macro definitions.
+As an additional challenge, I refrained from simply combining two separate source codes for each language into one file. 
+  
+Instead, I tried my best to golf this, which meant combining C++ and Python code using a lot of sketchy macro definitions.
 
 ---
 
