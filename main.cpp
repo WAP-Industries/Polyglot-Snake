@@ -63,20 +63,20 @@ Apples=list({});
 def Move(event):
     SDLK_w, SDLK_a, SDLK_s, SDLK_d = "w", "a", "s", "d"
     Key = event.keysym
-#endif
-#if 0
+    #endif
+    #if 0
     """ "
-#endif
-struct {
-    int X, Y, Tail;
-    set Body;
-    int Velocity[2];
-} Snake;
+    #endif
+    struct {
+        int X, Y, Tail;
+        set Body;
+        int Velocity[2];
+    } Snake;
 
-void Move(SDL_Keycode Key){
-#if 0
-" """
-#endif
+    void Move(SDL_Keycode Key){
+    #if 0
+    " """
+    #endif
     if (Key==SDLK_w): 0; Snake.Velocity[0] = 0; Snake.Velocity[1] = -1; pass;
     if (Key==SDLK_a): 0; Snake.Velocity[0] = -1; Snake.Velocity[1] = 0; pass;
     if (Key==SDLK_s): 0; Snake.Velocity[0] = 0; Snake.Velocity[1] = 1; pass;
@@ -86,15 +86,15 @@ void Move(SDL_Keycode Key){
 #if 0
 def SpawnApple():
     def GetPos():
-#endif
-#if 0
+        #endif
+        #if 0
         """ "
-#endif
-void SpawnApple(){
-    auto GetPos = []()->int {
-#if 0
-" """
-#endif
+        #endif
+        void SpawnApple(){
+            auto GetPos = []()->int {
+        #if 0
+        " """
+        #endif
         return randint(0, ScreenTiles-1);
         pass;
     dict 
@@ -102,7 +102,7 @@ void SpawnApple(){
     #//\
     pos = CreateTile(*map(lambda x:x*ScreenScale, [*pos,*pos][:2]), Red);
     Apples.append(pos);
-pass
+    pass
 
 
 #if 0
@@ -129,55 +129,55 @@ def Init():
 
     Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg=GetHex(Black),borderwidth=0, highlightthickness=0)
     Window.pack()
-
+#//\
 GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
 
 CreateTile = lambda X,Y, Color: Window.create_rectangle(X, Y, X+ScreenScale, Y+ScreenScale, fill=GetHex(Color),outline="")
 
 def main():
     global Window, Apples
-#endif
-#if 0
+    #endif
+    #if 0
     """ "
-#endif
-SDL_Window* Window = nullptr;
-SDL_Renderer* Renderer = nullptr;
+    #endif
+    SDL_Window* Window = nullptr;
+    SDL_Renderer* Renderer = nullptr;
 
-SDL_Event event;
-bool Ended = false;
+    SDL_Event event;
+    bool Ended = false;
 
-Uint32 FrameStart;
-int FrameTime;
+    Uint32 FrameStart;
+    int FrameTime;
 
-void SetColor(map Color){
-    int r, g, b;
-    std::tie(r, g, b) = Color;
-    SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
-}
+    void SetColor(map Color){
+        int r, g, b;
+        std::tie(r, g, b) = Color;
+        SDL_SetRenderDrawColor(Renderer, r, g, b, 255);
+    }
 
-void DrawTile(map Color, int X, int Y){
-    SetColor(Color);
-    SDL_Rect Tile = {X*ScreenScale, Y*ScreenScale, ScreenScale, ScreenScale};
-    SDL_RenderFillRect(Renderer, &Tile);
-}
+    void DrawTile(map Color, int X, int Y){
+        SetColor(Color);
+        SDL_Rect Tile = {X*ScreenScale, Y*ScreenScale, ScreenScale, ScreenScale};
+        SDL_RenderFillRect(Renderer, &Tile);
+    }
 
-void Init(){
-    Window = SDL_CreateWindow(GameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
-    Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
-    
-    SDL_Surface* Icon = IMG_Load("icon.ico");
-    SDL_SetWindowIcon(Window, Icon);
-    SDL_FreeSurface(Icon);
-    
-    ShowWindow(GetConsoleWindow(), SW_HIDE);
-    SDL_Init(SDL_INIT_EVERYTHING);
-}
+    void Init(){
+        Window = SDL_CreateWindow(GameTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, ScreenWidth, ScreenWidth, SDL_WINDOW_SHOWN);
+        Renderer = SDL_CreateRenderer(Window, -1, SDL_RENDERER_ACCELERATED);
+        
+        SDL_Surface* Icon = IMG_Load("icon.ico");
+        SDL_SetWindowIcon(Window, Icon);
+        SDL_FreeSurface(Icon);
+        
+        ShowWindow(GetConsoleWindow(), SW_HIDE);
+        SDL_Init(SDL_INIT_EVERYTHING);
+    }
 
-main(int argc,char* argv[]){
-    std::srand((unsigned) time(NULL));
-#if 0
-" """
-#endif
+    main(int argc,char* argv[]){
+        std::srand((unsigned) time(NULL));
+    #if 0
+    " """
+    #endif
     #//\
     if not Window:
         Init();
