@@ -3,7 +3,8 @@
 </p>
 
 ## The Challenge
-Code Snake, but the source code is valid in both Python and C++.  
+This is an extension of the [disguised program challenge](https://codegolf.stackexchange.com/questions/15372/write-a-program-in-disguise) on Code Golf.  
+Code Snake, but the source code must be a polyglot (valid in 2 or more languages).  
 
 Rules:
 1. The languages must be independent of each other
@@ -11,7 +12,13 @@ Rules:
    - Essentially, each language must run its own version of Snake
 2. You cannot have two separate full source codes for each language
    - A solution like in [`gay/version-2.cpp`](https://github.com/WAP-Industries/Polyglot-Snake/blob/main/gay/version-2.cpp) would be too easy otherwise
-   - You code must look like one full program, similar to [this](https://codegolf.stackexchange.com/questions/15372/write-a-program-in-disguise)
+   - Your code must look like one full program.
+
+---
+
+## Implementation
+For this challenge, I chose Python and C++ for my polyglot.  
+For graphics, I used Tkinter for Python and SDL2 for C++.  
 
 ---
 
