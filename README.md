@@ -27,4 +27,5 @@ For graphics, I used Tkinter for Python and SDL2 for C++.
     - Run `main.exe` or ...
     - Run `& .\compile.ps1` in your powershell terminal
 - Python
-    - Run `python main.cpp` in your terminal 
+    - Run `python main.cpp` in your terminal or ...
+    - Copy the source code into a `.pyw` file and run it
