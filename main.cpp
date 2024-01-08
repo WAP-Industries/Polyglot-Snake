@@ -127,7 +127,7 @@ def Init():
     Root.resizable(0,0)
     Root.bind("<Key>", Move)
 
-    Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg=GetHex(Black),borderwidth=0, highlightthickness=0)
+    Window = tk.Canvas(Root, width=ScreenWidth, height=ScreenWidth, bg=GetHex(Black), highlightthickness=0)
     Window.pack()
 
 GetHex = lambda Color: f"#{Color[0]:02X}{Color[1]:02X}{Color[2]:02X}"
